@@ -1,0 +1,16 @@
+{
+  "name": "nodechat",
+  "version": "0.0.0",
+  "homepage": "https://github.com/TiMirLAN/nodechat",
+  "authors": [
+    "Тимофей Миронов <timirlan666@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
