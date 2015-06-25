@@ -192,6 +192,12 @@ app = express()
 
 app.set 'views', './templates'
 app.set 'view engine', 'jade'
+app.use '/lib', express.static 'bower_components'
+
+if DEBUG
+  app.use '/assets', express.static 'assets'
+
+app.use express.static 'build'
 app.get '/', (req, res)->
   res.render 'index', {DEBUG:DEBUG}
 app.listen 8000, ()->
