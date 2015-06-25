@@ -1,5 +1,6 @@
 uuid = require 'node-uuid'
 _    = require 'underscore'
+express = require 'express'
 
 Backbone = require 'backbone'
 
@@ -184,3 +185,14 @@ io.on 'connection', (socket) =>
 
   socket.on 'disconnect', ->
     USERS.remove user
+
+# EXPRESS
+DEBUG = true
+app = express()
+
+app.set 'views', './templates'
+app.set 'view engine', 'jade'
+app.get '/', (req, res)->
+  res.render 'index', {DEBUG:DEBUG}
+app.listen 8000, ()->
+    console.log 'express start'
