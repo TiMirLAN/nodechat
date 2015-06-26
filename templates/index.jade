@@ -16,5 +16,13 @@ html
                     span(ng-bind='user.name')
                 li.users-list__debug DEBUG:
                     pre(ng-bind='users.others._idx|json:2')
+            ul.rooms-list(ng-controller='RoomsListCtrl')
+                li.rooms-list__item(ng-repeat='room in rooms.all.collection')
+                    span(ng-bind='room.name')
+                li.rooms-list__add-room
+                    input(ng-model='newRoomName')
+                    button(ng-click='createRoom()', ng-if='newRoomName') +
+                li.rooms-list__debug DEBUG:
+                    pre(ng-bind='rooms.all.collection|json')
     if DEBUG
         script(type='text/javascript',src='/lib/requirejs/require.js',data-main="/assets/config")
