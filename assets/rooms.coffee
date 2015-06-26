@@ -32,16 +32,23 @@ define [
     joinRoom: (id)=>
       @connection.emit 'joinRoom', id
 
+    leaveRoom: (id)=>
+      @connection.emit 'leaveRoom', id
+
     @register module
 
 
   class RoomsListCtrl extends ng.Controller
-    @deps = ['Rooms']
+    @deps = ['Rooms', 'Users']
 
-    constructor: (@scope, rooms)->
+    constructor: (@scope, rooms, users)->
       @scope.rooms = rooms
       @scope.newRoomName = ''
       @scope.createRoom = @createRoom
+
+      if users.current? and users.current.roomId?
+        @scope.rooms.leaveRoom users.current.roomId
+        users.current.roomId = null
 
 
     createRoom: ()=>
@@ -51,13 +58,14 @@ define [
     @register module
 
   class RoomCtrl extends ng.Controller
-    @deps = ['$stateParams', '$state', 'Rooms', 'connectionFactory']
+    @deps = ['$stateParams', '$state', 'Rooms', 'Users', 'connectionFactory', '$document']
 
-    constructor: (@scope, $stateParams, $state, rooms, @connection)->
+    constructor: (@scope, $stateParams, $state, rooms, users, @connection, $document)->
       @scope.room = rooms.all.get $stateParams.roomId
       if not @scope.room?
         $state.go 'index'
         return
+      users.current.roomId = @scope.room.id
       rooms.joinRoom @scope.room.id
       @scope.messages = []
       @scope.users = new IndexedCollection()
@@ -66,16 +74,19 @@ define [
         #TODO should be filter
         if not message.username?
           user = @scope.users.get message.user
-          if not user?
+          if user?
+            return user.name
+          else
             return "User: #{message.user}"
-          message.username = user.name
-        message.username
       @scope.messageText = ''
 
       @connection.on 'room:users:added', @scope.users.extend
       @connection.on 'room:users:removed', @scope.users.remove
       @connection.on 'room:users:changed', @scope.users.update
       @connection.on 'room:messages:added', @receiveMessage
+
+      $document.on 'unload', ()=>
+        rooms.leaveRoom @scope.room.id
 
     receiveMessage: (itemOrList)=>
       @scope.messages = @scope.messages.concat itemOrList

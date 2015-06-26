@@ -14,7 +14,12 @@ html
         h2 Users
         ul.users-list(ng-controller='UsersListCtrl')
             li.users-list__current-user(ng-controller='CurrentUserCtrl')
-                span.users-list__current-user-name(ng-bind='users.current.name')
+                span(ng-hide='editUsername')
+                    span.users-list__current-user-name(ng-bind='users.current.name')
+                    span.users-list__edit-name(ng-click='editUsername = !editUsername') &nbsp;edit
+                span(ng-show='editUsername')
+                    input(ng-model='newName')
+                    button(ng-click='setCurrentUserName()',ng-if='newName') OK
                 //    input(id='new-name', ng-model='newName')
                 //    button(ng-click='setCurrentUserName()', ng-if='newName') Change
             li.users-list__user(ng-repeat='user in users.others.collection')

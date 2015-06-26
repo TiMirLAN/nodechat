@@ -51,8 +51,10 @@ define [
     constructor: (@scope, users)->
       @scope.users = users
       @scope.newName = ''
+      @scope.editUsername = false
 
       @scope.setCurrentUserName = ()=>
         @scope.users.changeCurrentUserName @scope.newName
         @scope.newName = ''
+        @scope.editUsername = false
     @register module
