@@ -1,8 +1,8 @@
-define [
-  '/assets/scripts/utils/ng.js',
-  '/assets/scripts/utils/indexed_collection.js',
-  '/assets/scripts/connection.js'
-  '/assets/scripts/users.js',
+define 'assets/scripts/rooms.js', [
+  'assets/scripts/utils/ng.js',
+  'assets/scripts/utils/indexed_collection.js',
+  'assets/scripts/connection.js'
+  'assets/scripts/users.js',
   'ui.router'
 ], (ng, IndexedCollection)->
   module = ng.module 'Chat.Rooms', ['Chat.Connection', 'Chat.Users', 'ui.router']

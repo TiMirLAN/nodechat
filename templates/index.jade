@@ -9,6 +9,8 @@ html
         main(ui-view='')
     if DEBUG
         script(type='text/javascript',src='/lib/requirejs/require.js',data-main="/assets/scripts/config")
+    else
+        script(type='text/javascript',src='/build/scripts/main.js')
 
     //Index view template
     script(type='text/ng-template', id='/tpls/index.html')

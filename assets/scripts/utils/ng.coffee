@@ -1,4 +1,4 @@
-define ['angular'], (angular)->
+define 'assets/scripts/utils/ng.js', ['angular'], (angular)->
   class NgRegistered
     @type: undefined
     @deps: []

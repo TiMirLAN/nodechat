@@ -1,9 +1,10 @@
-define [
-  '/assets/scripts/utils/ng.js',
-  '/assets/scripts/users.js',
-  '/assets/scripts/rooms.js',
+define 'assets/scripts/main', [
+  'angular',
+  'assets/scripts/utils/ng.js',
+  'assets/scripts/users.js',
+  'assets/scripts/rooms.js',
   'ui.router'
-], (ng) ->
+], (angular, ng) ->
   module = ng.module 'Chat', [
     'Chat.Users',
     'Chat.Rooms',
@@ -27,6 +28,5 @@ define [
 
     @register module
 
-
   #exports
-  module.name
+  angular.bootstrap document.body, [module.name]

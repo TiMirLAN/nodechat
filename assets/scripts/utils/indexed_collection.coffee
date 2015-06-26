@@ -1,4 +1,4 @@
-define ['lodash'], (_) ->
+define 'assets/scripts/utils/indexed_collection.js', ['lodash'], (_) ->
   class IndexedCollection
     constructor: (elements = []) ->
       @collection = Array.prototype.concat elements
