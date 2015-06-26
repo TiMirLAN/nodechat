@@ -32,3 +32,9 @@ define ['lodash'], (_) ->
     get: (id)=>
       index = @_idx[id]
       if index? then @collection[index] else null
+
+    removeById: (id)=>
+      index = @_idx[id]
+      if index?
+        @collection.splice index, 1
+        @rebuildIndex

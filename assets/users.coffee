@@ -11,28 +11,23 @@ define [
       @others = new IndexedCollection()
       @current = null
 
-      @connection.on 'users:added', @addedRouter
-      @connection.on 'users:changed', @handleUserChange
-      @connection.on 'users:removed', @handleUserRemove
+      @connection.on 'users:added', @handleUserAdd
+      @connection.on 'entered', @currentUserHandle
+      @connection.on 'users:changed', @others.update
+      @connection.on 'users:removed', @others.remove
 
-    addedRouter: (usersData)=>
-      # Current user data came first...
-      if not @current?
-        @current = usersData
-      else
-        @handleUserAdd usersData
+    currentUserHandle: (usersData)=>
+      @current = usersData
+      if @others?
+        @others.removeById @current.id
 
     setCurrentUserHandler: (user)=>
       @current = user
 
     handleUserAdd: (usersData) =>
       @others.extend usersData
-
-    handleUserChange: (usersData) =>
-      @others.update usersData
-
-    handleUserRemove: (userData) =>
-      @others.remove userData
+      if @current?
+         @others.removeById @current.id
 
     changeCurrentUserName: (name)->
       @current.name = name
