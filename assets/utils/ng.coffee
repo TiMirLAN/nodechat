@@ -15,8 +15,8 @@ define ['angular'], (angular)->
 
   # module[type](dependencies)
   class NgRunner extends NgRegistered
-    @register: ()->
-      _module[@type] @getDependencies()
+    @register: (module)->
+      module[@type] @getDependencies()
 
   # EXPORTS
   ng =
