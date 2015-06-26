@@ -1,7 +1,7 @@
 define [
   '/assets/utils/ng.js',
   '/assets/utils/indexed_collection.js',
-  '/assets/utils/connection.js'
+  '/assets/connection.js'
   '/assets/users.js'
 ], (ng, IndexedCollection)->
   module = ng.module 'Chat.Rooms', ['Chat.Connection', 'Chat.Users']
