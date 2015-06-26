@@ -6,5 +6,15 @@ html
             title Node chat
     body
         main
+            .current-user(ng-controller='CurrentUserCtrl')
+                span(ng-bind='users.current.name')
+                label(for='new-name') Change username
+                input(id='new-name', ng-model='newName')
+                button(ng-click='setCurrentUserName()', ng-if='newName') Change
+            ul.users-list(ng-controller='UsersListCtrl')
+                li.users-list__item(ng-repeat='user in users.others.collection')
+                    span(ng-bind='user.name')
+                li.users-list__debug DEBUG:
+                    pre(ng-bind='users.others._idx|json:2')
     if DEBUG
         script(type='text/javascript',src='/lib/requirejs/require.js',data-main="/assets/config")
