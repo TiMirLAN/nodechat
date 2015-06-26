@@ -1,0 +1,42 @@
+@import url("http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700&subset=latin,cyrillic");
+
+grey-color = #666666
+button-border-radius = 4px
+
+body
+  font-family 'Ubuntu Mono'
+
+button
+  background-color grey-color
+  border none
+  border-radius button-border-radius
+  color #ffffff
+  font-weight bold
+  line-height 1.5em
+  padding 0 4px
+
+input
+  border 1px solid grey-color
+
+input+button
+  border-radius 0 button-border-radius button-border-radius 0
+  line-height 1.5em
+  margin 0
+
+drop-list()
+  list-style none
+  margin 0
+  padding 0
+
+index-title()
+  font-size 2em
+  margin 0 0 15px 0
+  paddig 0
+
+link-like-element()
+  text-decoration underline
+  color #2F6FAD
+
+@import './users'
+@import './rooms'
+@import './room'

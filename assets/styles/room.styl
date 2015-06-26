@@ -1,0 +1,44 @@
+.room
+  &__title
+    index-title()
+  &__users-list
+    drop-list()
+    width 30%
+    float left
+  &__messages
+    width 60%
+    float left
+    outline 1px solid #333333
+
+    &-list
+      overflow-y auto
+      height 400px
+
+    &-form
+      display block
+      background-color #333333
+      width 100%
+      padding 15px 0
+
+      &-texarea-wrapper, &-button-wrapper
+        margin 0 15px
+
+      &-textarea
+        width 100%
+
+      &-button
+        border-radius 0 0 button-border-radius button-border-radius
+
+  &__message
+    padding 0 10px
+    margin 0
+    position relative
+
+    &-author
+      color grey-color
+      font-weight bold
+
+    &-author, &-text
+      display inline-block
+      margin 10px 0 0 0
+      padding 0
