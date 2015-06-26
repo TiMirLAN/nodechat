@@ -1,4 +1,4 @@
-define ['/assets/utils/ng.js', 'sio', 'ngsocketio'], (ng, io)->
+define ['/assets/scripts/utils/ng.js', 'sio', 'ngsocketio'], (ng, io)->
   module = ng.module 'Chat.Connection', ['btford.socket-io']
 
   class connectionFactory extends ng.Factory

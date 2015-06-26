@@ -1,7 +1,7 @@
 define [
-  '/assets/utils/ng.js',
-  '/assets/users.js',
-  '/assets/rooms.js',
+  '/assets/scripts/utils/ng.js',
+  '/assets/scripts/users.js',
+  '/assets/scripts/rooms.js',
   'ui.router'
 ], (ng) ->
   module = ng.module 'Chat', [
