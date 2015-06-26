@@ -9,6 +9,7 @@ html
     if DEBUG
         script(type='text/javascript',src='/lib/requirejs/require.js',data-main="/assets/config")
 
+    //Index view template
     script(type='text/ng-template', id='/tpls/index.html')
         h2 Users
         ul.users-list(ng-controller='UsersListCtrl')
@@ -29,12 +30,14 @@ html
                 button(ng-click='createRoom()', ng-if='newRoomName') +
             //li.rooms-list__debug DEBUG:
             //    pre(ng-bind='rooms.all.collection|json')
+
+    // Message view template
     script(type='text/ng-template', id='/tpls/room.html')
         h2.room__title(ng-bind='room.name')
         ul.room__users-list
             li.room__users-list-item(ng-repeat='user in users.collection')
                 span.room__users-list-item-name(ng-bind='user.name')
-        .room__debug(ng-bind='room|json')
+        //.room__debug(ng-bind='room|json')
         .room__messages
             .room__message(ng-repeat='message in messages')
                 p.room__message-author(ng-bind='username(message)')
