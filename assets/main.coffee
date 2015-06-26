@@ -20,6 +20,11 @@ define [
         .state 'index',
           url: '/'
           templateUrl: '/tpls/index.html'
+        .state 'room',
+          url: '/:roomId/'
+          controller:  'RoomCtrl'
+          templateUrl: '/tpls/room.html'
+
     @register module
 
 

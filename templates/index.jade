@@ -23,9 +23,22 @@ html
         h2 Rooms
         ul.rooms-list(ng-controller='RoomsListCtrl')
             li.rooms-list__item(ng-repeat='room in rooms.all.collection')
-                span(ng-bind='room.name')
+                a(ng-bind='room.name',ui-sref='room({roomId:room.id})')
             li.rooms-list__add-room
                 input(ng-model='newRoomName')
                 button(ng-click='createRoom()', ng-if='newRoomName') +
             //li.rooms-list__debug DEBUG:
             //    pre(ng-bind='rooms.all.collection|json')
+    script(type='text/ng-template', id='/tpls/room.html')
+        h2.room__title(ng-bind='room.name')
+        ul.room__users-list
+            li.room__users-list-item(ng-repeat='user in users.collection')
+                span.room__users-list-item-name(ng-bind='user.name')
+        .room__debug(ng-bind='room|json')
+        .room__messages
+            .room__message(ng-repeat='message in messages')
+                p.room__message-author(ng-bind='username(message)')
+                p.room__message-text(ng-bind='message.body')
+        .room__mesage-form
+            textarea.room__message-form-texarea(ng-model='messageText')
+            button(ng-click='sendMessage(messageText)') Send
