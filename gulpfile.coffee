@@ -19,7 +19,7 @@ gulp.task 'build-stylus', ()->
     .pipe stylus()
     .pipe gulp.dest 'build/styles/'
 
-gulp.task 'build-js', ()->
+gulp.task 'build-js', ['build-coffee'], ()->
   build = rjs
     baseUrl: '.'
     name: 'node_modules/almond/almond'
@@ -49,4 +49,4 @@ gulp.task 'build-js', ()->
       mangle: false # 'cause of ./assets/scripts/utils/ng.coffee, that uses functions names.
     .pipe gulp.dest 'build/scripts/'
 
-gulp.task 'default', ['build-coffee', 'build-js', 'build-stylus']
+gulp.task 'default', ['build-js', 'build-stylus']
