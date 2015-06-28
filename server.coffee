@@ -187,7 +187,7 @@ io.on 'connection', (socket) =>
     USERS.remove user
 
 # EXPRESS
-DEBUG = true
+DEBUG = false
 app = express()
 
 app.set 'views', './templates'

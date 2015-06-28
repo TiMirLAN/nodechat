@@ -7,3 +7,6 @@ npm-debug.log
 assets/**/*.js
 build/styles/
 build/scripts/
+
+# grandspike for requirejs building with socketio
+!assets/scripts/utils/socket.io.patched.js

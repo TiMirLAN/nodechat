@@ -28,12 +28,14 @@ gulp.task 'build-js', ()->
     paths:
       angular: 'bower_components/angular/angular'
       lodash: 'bower_components/lodash/lodash'
-      sio: 'node_modules/socket.io/node_modules/socket.io-client/socket.io'
+      sio: 'assets/scripts/utils/socket.io.patched'
       ngsocketio: 'bower_components/angular-socket-io/socket'
       'ui.router': 'bower_components/angular-ui-router/release/angular-ui-router'
     shim:
       angular:
         exports: 'angular'
+      sio:
+        exports: 'io'
       ngsocketio:
         init: (angular, io)->
           window.io = io # SPIKE
