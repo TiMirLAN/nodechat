@@ -14,49 +14,8 @@ html
 
     //Index view template
     script(type='text/ng-template', id='/tpls/index.html')
-        .users
-            h2.users-title Users
-            ul.users-list(ng-controller='UsersListCtrl')
-                li.users-list__current-user(ng-controller='CurrentUserCtrl')
-                    span(ng-hide='editUsername')
-                        span.users-list__current-user-name(ng-bind='users.current.name')
-                        span.users-list__space &nbsp;
-                        span.users-list__edit-name(ng-click='editUsername = !editUsername') edit
-                    span(ng-show='editUsername')
-                        input(ng-model='newName')
-                        button(ng-click='setCurrentUserName()',ng-if='newName') OK
-                    //    input(id='new-name', ng-model='newName')
-                    //    button(ng-click='setCurrentUserName()', ng-if='newName') Change
-                li.users-list__user(ng-repeat='user in users.others.collection')
-                    span.users-list__user-name(ng-bind='user.name')
-            //    li.users-list__debug DEBUG:
-            //        pre(ng-bind='users.others._idx|json:2')
-        .rooms
-            h2.rooms-title Rooms
-            ul.rooms-list(ng-controller='RoomsListCtrl')
-                li.rooms-list__item(ng-repeat='room in rooms.all.collection')
-                    a.rooms-list__item-link(ng-bind='room.name',ui-sref='room({roomId:room.id})')
-                li.rooms-list__add-room
-                    label.rooms-list__add-room-label New room
-                    input.rooms-list__add-room-name(ng-model='newRoomName')
-                    button.rooms-list__add-room-confirm(ng-click='createRoom()', ng-if='newRoomName') +
-                //li.rooms-list__debug DEBUG:
-                //    pre(ng-bind='rooms.all.collection|json')
+        include includes/ng-templates/ui-views/index
 
     // Message view template
     script(type='text/ng-template', id='/tpls/room.html')
-        h2.room__title(ng-bind='room.name')
-        ul.room__users-list
-            li.room__users-list-item(ng-repeat='user in users.collection')
-                span.room__users-list-item-name(ng-bind='user.name')
-        //.room__debug(ng-bind='room|json')
-        .room__messages
-            .room__messages-list
-                .room__message(ng-repeat='message in messages')
-                    p.room__message-author(ng-bind='username(message)+":"')
-                    p.room__message-text(ng-bind='message.body')
-            .room__messages-form
-                .room__messages-form-texarea-wrapper
-                    textarea.room__messages-form-textarea(ng-model='messageText')
-                .room__messages-form-button-wrapper
-                    button.room__messages-form-button(ng-click='sendMessage(messageText)') Send
+        include includes/ng-templates/ui-views/room

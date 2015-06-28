@@ -1,0 +1,18 @@
+//
+   Created by timirlan on 28.06.15.
+
+h2.room__title(ng-bind='room.name')
+    ul.room__users-list
+        li.room__users-list-item(ng-repeat='user in users.collection')
+            span.room__users-list-item-name(ng-bind='user.name')
+    //.room__debug(ng-bind='room|json')
+    .room__messages
+        .room__messages-list
+            .room__message(ng-repeat='message in messages')
+                p.room__message-author(ng-bind='username(message)+":"')
+                p.room__message-text(ng-bind='message.body')
+        .room__messages-form
+            .room__messages-form-texarea-wrapper
+                textarea.room__messages-form-textarea(ng-model='messageText')
+            .room__messages-form-button-wrapper
+                button.room__messages-form-button(ng-click='sendMessage(messageText)') Send
