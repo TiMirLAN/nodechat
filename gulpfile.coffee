@@ -3,6 +3,7 @@ coffee  = require 'gulp-coffee'
 util    = require 'gulp-util'
 stylus  = require 'gulp-stylus'
 rjs     = require 'gulp-requirejs'
+uglify  = require 'gulp-uglify'
 
 # Tasks
 
@@ -43,6 +44,9 @@ gulp.task 'build-js', ()->
       'ui.router':
         deps: ['angular']
 
-  build.pipe gulp.dest 'build/scripts/'
+  build
+    .pipe uglify
+      mangle: false # 'cause of ./assets/scripts/utils/ng.coffee, that uses functions names.
+    .pipe gulp.dest 'build/scripts/'
 
 gulp.task 'default', ['build-coffee', 'build-js', 'build-stylus']
